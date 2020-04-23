@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "88198790949",
+    "firebase_url": "https://lojaflutter-fd6a3.firebaseio.com",
+    "project_id": "lojaflutter-fd6a3",
+    "storage_bucket": "lojaflutter-fd6a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88198790949:android:6250a39655625ccf2ea4cc",
+        "android_client_info": {
+          "package_name": "br.com.davihoffmann.lojavirtual"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88198790949-871ft2518kekt57t48fvd617k423490q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEinSiP5_Rr2n8VQGjBQIvMGZg6HbV5SI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "88198790949-871ft2518kekt57t48fvd617k423490q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
