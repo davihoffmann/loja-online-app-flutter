@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:lojavirtual/tiles/drawer_tile.dart';
 
 class CustomDrawer extends StatelessWidget {
-
   Widget _buildDrawerBack() => Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(255, 203, 236, 241),
-              Colors.white
-            ],
+            colors: [Color.fromARGB(255, 180, 236, 241), Colors.white],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -31,17 +28,46 @@ class CustomDrawer extends StatelessWidget {
                 child: Stack(
                   children: <Widget>[
                     Positioned(
-                      top: 8.0,
-                      left: 0.0,
-                      child: Text("Developer \nStore",
-                      style: TextStyle(
-                        fontSize: 36.0,
-                        fontWeight: FontWeight.bold
-                      ),)
-                    )
+                        top: 8.0,
+                        left: 0.0,
+                        child: Text(
+                          "Developer \nStore",
+                          style: TextStyle(
+                              fontSize: 36.0, fontWeight: FontWeight.bold),
+                        )),
+                    Positioned(
+                        left: 0.0,
+                        bottom: 0.0,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              "Olá,",
+                              style: TextStyle(
+                                  fontSize: 18.0, fontWeight: FontWeight.bold),
+                            ),
+                            GestureDetector(
+                              child: Text(
+                                "Entre ou cadastra-se >",
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16.0),
+                              ),
+                              onTap: () {
+
+                              },
+                            )
+                          ],
+                        ))
                   ],
                 ),
-              )
+              ),
+              Divider(),
+              DrawerTile(Icons.home, "Início"),
+              DrawerTile(Icons.list, "Produtos"),
+              DrawerTile(Icons.location_on, "Lojas"),
+              DrawerTile(Icons.playlist_add_check, "Meus Pedidos"),
             ],
           )
         ],
