@@ -14,6 +14,8 @@ class ProductDetailScreen extends StatefulWidget {
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   final ProductData product;
 
+  String size;
+
   _ProductDetailScreenState(this.product);
 
   @override
@@ -60,7 +62,50 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     fontWeight: FontWeight.bold,
                     color: primatyColor
                   ),
-                )
+                ),
+                SizedBox(height: 16.0,),
+                Text(
+                  "Tamanho",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16.0
+                  ),
+                ),
+                SizedBox(
+                  height: 34.0,
+                  child: GridView(
+                    padding: EdgeInsets.symmetric(vertical: 4.0),
+                    scrollDirection: Axis.horizontal,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                      mainAxisSpacing: 8.0,
+                      childAspectRatio: 0.5,
+                    ),
+                    children: product.sizes.map(
+                      (s) {
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              size = s;
+                            });
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                              border: Border.all(
+                                color: s == size ? primatyColor :  Colors.grey[500],
+                                width: 3.0
+                              ),
+                            ),
+                            width: 50.0,
+                            alignment: Alignment.center,
+                            child: Text(s),
+                          ),
+                        );
+                      }
+                    ).toList(),
+                  ),
+                ),
               ],
             ),
           )
