@@ -58,18 +58,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 Text(
                   "R\$ ${product.price.toStringAsFixed(2)}",
                   style: TextStyle(
-                    fontSize: 22.0,
-                    fontWeight: FontWeight.bold,
-                    color: primatyColor
-                  ),
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.bold,
+                      color: primatyColor),
                 ),
-                SizedBox(height: 16.0,),
+                SizedBox(
+                  height: 16.0,
+                ),
                 Text(
                   "Tamanho",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16.0
-                  ),
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16.0),
                 ),
                 SizedBox(
                   height: 34.0,
@@ -81,30 +79,54 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       mainAxisSpacing: 8.0,
                       childAspectRatio: 0.5,
                     ),
-                    children: product.sizes.map(
-                      (s) {
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              size = s;
-                            });
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                              border: Border.all(
-                                color: s == size ? primatyColor :  Colors.grey[500],
-                                width: 3.0
-                              ),
-                            ),
-                            width: 50.0,
-                            alignment: Alignment.center,
-                            child: Text(s),
+                    children: product.sizes.map((s) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            size = s;
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(4.0)),
+                            border: Border.all(
+                                color:
+                                    s == size ? primatyColor : Colors.grey[500],
+                                width: 3.0),
                           ),
-                        );
-                      }
-                    ).toList(),
+                          width: 50.0,
+                          alignment: Alignment.center,
+                          child: Text(s),
+                        ),
+                      );
+                    }).toList(),
                   ),
+                ),
+                SizedBox(
+                  height: 16.0,
+                ),
+                SizedBox(
+                  height: 44.0,
+                  child: RaisedButton(
+                    onPressed: size != null ? () {} : null,
+                    child: Text(
+                      "Adicionar ao Carrinho",
+                      style: TextStyle(fontSize: 18.0, color: Colors.white),
+                    ),
+                    color: primatyColor,
+                  ),
+                ),
+                SizedBox(
+                  height: 16.0,
+                ),
+                Text(
+                  "Descrição",
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16.0),
+                ),
+                Text(
+                  product.description,
+                  style: TextStyle(fontSize: 16.0),
                 ),
               ],
             ),

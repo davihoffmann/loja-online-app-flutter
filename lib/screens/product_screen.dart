@@ -74,7 +74,11 @@ class ProductScreen extends StatelessWidget {
       itemCount: snapshot.data.documents.length,
       itemBuilder: (context, index) {
         return ProductTile(
-            "grid", ProductData.fromDocument(snapshot.data.documents[index]));
+          "grid",
+          ProductData.fromDocument(
+            snapshot.data.documents[index],
+          ),
+        );
       },
     );
   }
