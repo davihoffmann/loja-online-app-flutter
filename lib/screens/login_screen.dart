@@ -38,6 +38,7 @@ class LoginScreen extends StatelessWidget {
                 if (text.isEmpty || !text.contains('@')) {
                   return "E-mail inválido";
                 }
+                return "";
               },
               decoration: InputDecoration(hintText: "E-mail"),
               keyboardType: TextInputType.emailAddress,
@@ -50,6 +51,7 @@ class LoginScreen extends StatelessWidget {
                 if (text.isEmpty || text.length < 6) {
                   return "Senha inválida";
                 }
+                return "";
               },
               decoration: InputDecoration(hintText: "Senha"),
               obscureText: true,
