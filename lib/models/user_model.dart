@@ -9,6 +9,9 @@ class UserModel extends Model {
   Map<String, dynamic> userData = Map();
   bool isLoading = false;
 
+  static UserModel of(BuildContext context) =>
+      ScopedModel.of<UserModel>(context);
+
   @override
   void addListener(listener) {
     super.addListener(listener);
@@ -49,7 +52,9 @@ class UserModel extends Model {
     isLoading = true;
     notifyListeners();
 
-    _auth.signInWithEmailAndPassword(email: email, password: pass).then((user) async {
+    _auth
+        .signInWithEmailAndPassword(email: email, password: pass)
+        .then((user) async {
       firebaseUser = user;
 
       await _laodCurrentUser();
