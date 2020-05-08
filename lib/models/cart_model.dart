@@ -5,9 +5,12 @@ import 'package:lojavirtual/models/user_model.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class CartModel extends Model {
+  
   UserModel user;
-
   List<CartProduct> products = [];
+
+  String couponCode;
+  int descountPercetage = 0;
 
   bool isLoading = false;
 
@@ -70,6 +73,11 @@ class CartModel extends Model {
         .updateData(cartProduct.toMap());
 
     notifyListeners();
+  }
+
+  void setCoupon(String couponCode, int descountPercentage) {
+    this.couponCode = couponCode;
+    this.descountPercetage = descountPercetage;
   }
 
   void _loadCartItems() async {
