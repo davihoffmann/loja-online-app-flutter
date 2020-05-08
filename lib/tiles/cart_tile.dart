@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lojavirtual/datas/cart_product.dart';
 import 'package:lojavirtual/datas/product_data.dart';
+import 'package:lojavirtual/models/cart_model.dart';
 
 class CartTile extends StatelessWidget {
   final CartProduct product;
@@ -50,16 +51,22 @@ class CartTile extends StatelessWidget {
                       IconButton(
                         icon: Icon(Icons.remove),
                         color: Theme.of(context).primaryColor,
-                        onPressed: product.quantity > 1 ? () {} : null,
+                        onPressed: product.quantity > 1 ? () {
+                          CartModel.of(context).decProduct(product);
+                        } : null,
                       ),
                       Text("${product.quantity.toString()}"),
                       IconButton(
                         icon: Icon(Icons.add),
                         color: Theme.of(context).primaryColor,
-                        onPressed: () {},
+                        onPressed: () {
+                          CartModel.of(context).incProduct(product);
+                        },
                       ),
                       FlatButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          CartModel.of(context).removeCartItem(product);
+                        },
                         child: Text("Remover"),
                         textColor: Colors.grey[500],
                       ),
