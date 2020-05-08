@@ -6,6 +6,7 @@ import 'package:lojavirtual/models/cart_model.dart';
 import 'package:lojavirtual/models/user_model.dart';
 import 'package:lojavirtual/screens/cart_screen.dart';
 import 'package:lojavirtual/screens/login_screen.dart';
+import 'package:lojavirtual/widgets/cart_button.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final ProductData product;
@@ -32,6 +33,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         title: Text(product.title),
         centerTitle: true,
       ),
+      floatingActionButton: CartButton(),
       body: ListView(
         children: <Widget>[
           AspectRatio(

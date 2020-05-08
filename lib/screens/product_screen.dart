@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lojavirtual/datas/product_data.dart';
 import 'package:lojavirtual/tiles/product_tile.dart';
+import 'package:lojavirtual/widgets/cart_button.dart';
 
 class ProductScreen extends StatelessWidget {
   final DocumentSnapshot snapshot;
@@ -24,6 +25,7 @@ class ProductScreen extends StatelessWidget {
             ],
           ),
         ),
+        floatingActionButton: CartButton(),
         body: FutureBuilder<QuerySnapshot>(
           future: Firestore.instance
               .collection("products")
