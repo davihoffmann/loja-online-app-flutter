@@ -28,4 +28,9 @@ class CartProduct {
       //"product": productData.toResumedMap()
     };
   }
+
+  @override
+  String toString() {
+    return "CartProduct(id: $id, category: $category, productId: $productId)";
+  }
 }

@@ -47,6 +47,7 @@ class CartScreen extends StatelessWidget {
               children: <Widget>[
                 Column(
                   children: model.products.map((product) {
+                    print("PRODUTO: $product");
                     return CartTile(product);
                   }).toList(),
                 ),
