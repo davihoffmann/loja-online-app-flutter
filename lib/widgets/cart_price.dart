@@ -4,7 +4,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 class CartPrice extends StatelessWidget {
 
-  VoidCallback buy;
+  final VoidCallback buy;
 
   CartPrice(this.buy);
 
