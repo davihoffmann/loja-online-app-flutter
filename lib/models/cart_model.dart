@@ -5,7 +5,6 @@ import 'package:lojavirtual/models/user_model.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class CartModel extends Model {
-  
   UserModel user;
   List<CartProduct> products = [];
 
@@ -86,8 +85,8 @@ class CartModel extends Model {
 
   double getProductsPrice() {
     double price = 0.0;
-    for(CartProduct c in products) {
-      if(c.productData != null) {
+    for (CartProduct c in products) {
+      if (c.productData != null) {
         price += c.quantity * c.productData.price;
       }
     }
@@ -100,6 +99,60 @@ class CartModel extends Model {
 
   double getShipPrice() {
     return 9.99;
+  }
+
+  Future<String> finishOrder() async {
+    //VERIFICA SE TEM PRODUTOS
+    if (products.length == 0) {
+      return null;
+    }
+    isLoading = true;
+    notifyListeners();
+
+    double productsPrice = getProductsPrice();
+    double shipPrice = getShipPrice();
+    double discount = getDiscount();
+
+    //CRIA O PEDIDO
+    DocumentReference refOrder =
+        await Firestore.instance.collection("orders").add({
+      "clientId": user.firebaseUser.uid,
+      "products": products.map((cartProduct) => cartProduct.toMap()).toList(),
+      "shipPrice": shipPrice,
+      "productsPrice": productsPrice,
+      "discount": discount,
+      "totalPrice": productsPrice - discount + shipPrice,
+      "status": 1
+    });
+
+    //SALVA O ID DO PEDIDO NO USUARIO
+    await Firestore.instance
+        .collection("users")
+        .document(user.firebaseUser.uid)
+        .collection("orders")
+        .document(refOrder.documentID)
+        .setData({"orderId": refOrder.documentID});
+
+    QuerySnapshot query = await Firestore.instance
+        .collection("users")
+        .document(user.firebaseUser.uid)
+        .collection("cart")
+        .getDocuments();
+
+    // LIMPA O CARRINHO DO USUARIO
+    for(DocumentSnapshot doc in query.documents) {
+      doc.reference.delete();
+    }
+
+    //LIMPA VARIAVEIS LOCAIS
+    products.clear();
+    descountPercetage = 0;
+    couponCode = null;
+
+    isLoading = false;
+    notifyListeners();
+
+    return refOrder.documentID;
   }
 
   void _loadCartItems() async {
