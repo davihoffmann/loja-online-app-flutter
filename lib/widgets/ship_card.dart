@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Shipcard extends StatelessWidget {
+class ShipCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(

@@ -5,14 +5,17 @@ import 'package:lojavirtual/datas/product_data.dart';
 import 'package:lojavirtual/models/cart_model.dart';
 
 class CartTile extends StatelessWidget {
+
   final CartProduct product;
 
   CartTile(this.product);
 
   @override
   Widget build(BuildContext context) {
+    
     Widget _buildContent() {
-      //CartModel.of(context).updatePrices();
+      CartModel.of(context).updatePrices();
+      print('Chamado 2');
 
       return Row(
         children: <Widget>[
